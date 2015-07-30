@@ -35,10 +35,13 @@ function gulpH5Replacer() {
       // 替换资源
       replacer(file.path, file.contents.toString(), function (result){
         file.contents = new Buffer(result);
+        cb(null, file);
+        // console.log(file.contents.toString());
       });
+
     }
 
-    cb(null, file);
+    // cb(null, file);
 
   });
 
