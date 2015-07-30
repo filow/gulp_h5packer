@@ -1,5 +1,5 @@
 {
-  "name": "gulp-h5packer",
+  "name": "@alipay/gulp-h5packer",
   "version": "0.1.0",
   "description": "移动H5页面打包工具，可以根据描述将资源打包进html，替换资源为全局资源包CDN地址，减少请求数量",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "keywords": [
     "gulpplugin",
     "html5",
-    "packer"
+    "packer",
     "gulp",
     "gulp-h5packer"
   ],
@@ -17,6 +17,14 @@
   "license": "ISC",
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "homepage": "http://gitlab.alibaba-inc.com/renhai.lrh/gulp-h5packer",
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.alibaba-inc.com/renhai.lrh/gulp-h5packer/issues"
+  },
+  "bugs": {
+    "url": "https://github.com/winnieBear/gulp-velocity/issues"
   },
   "dependencies": {
     "gulp-util": "~3.0.6",
