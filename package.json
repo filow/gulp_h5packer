@@ -1,6 +1,6 @@
 {
   "name": "@alipay/gulp-h5packer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "移动H5页面打包工具，可以根据描述将资源打包进html，替换资源为全局资源包CDN地址，减少请求数量",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "dependencies": {
     "gulp-util": "~3.0.6",
     "jquery": "~2.1.4",
-    "jsdom": "~5.6.1",
+    "jsdom": "~3.1.2",
     "through2": "~2.0.0"
   }
 }

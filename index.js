@@ -4,7 +4,7 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var Buffer = require('buffer').Buffer;
 var path = require('path');
-var replacer = require('./replacer').RawReplacer
+var replacer = require('./lib/replacer').RawReplacer
 
 // Consts
 const PLUGIN_NAME = 'gulp-h5replacer';
