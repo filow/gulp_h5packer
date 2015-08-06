@@ -8,8 +8,9 @@
 
 ## 用法
 
-首先，在待处理的html文件中加入标记。标记共有两种，一种为：
+首先，在待处理的html文件中加入标记。标记共有三种：
 
+### 内容替换标记
 
 ```html
 <link rel="stylesheet" type="text/css" href="something.css" data-replace="true">
@@ -20,7 +21,7 @@
 
 目前插件会自动压缩css和js文件，未来可以通过配置文件取消这一功能。
 
-另外一种引用格式为：
+### 资源URL替换标记
 
 ```html
 <link rel="stylesheet" type="text/css" href="local/amui.css" data-replace="amui">
@@ -42,6 +43,13 @@
 ```
 具体的列表可以看[h5全局离线资源包](http://ux.alipay-inc.com/index.php/H5%E5%85%A8%E5%B1%80%E7%A6%BB%E7%BA%BF%E8%B5%84%E6%BA%90%E5%8C%85)
 
+### 图片Base64转化标记
+```html
+<img src="fake.png" data-replace="base64">
+```
+注意： 目前Base64转码不考虑文件大小因素，请不要在大图片上加这个标记！
+
+## 引用
 设置完HTML后，在gulpfile.js中引用：
 ```js
 gulp.task('pack', function (){
