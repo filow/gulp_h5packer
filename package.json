@@ -1,6 +1,6 @@
 {
   "name": "@alipay/gulp-h5packer",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "移动H5页面打包工具，可以根据描述将资源打包进html，替换资源为全局资源包CDN地址，减少请求数量",
   "main": "index.js",
   "scripts": {
@@ -27,17 +27,18 @@
     "url": "https://github.com/winnieBear/gulp-velocity/issues"
   },
   "dependencies": {
+    "base64-img": "~1.0.3",
+    "clean-css": "~3.3.7",
     "gulp-util": "~3.0.6",
     "jquery": "~2.1.4",
     "jsdom": "~3.1.2",
-    "through2": "~2.0.0"
+    "through2": "~2.0.0",
+    "uglify-js": "~2.4.24"
   },
   "devDependencies": {
     "@alipay/qingting-cdnupload": "~0.2.0",
     "assert": "~1.3.0",
-    "clean-css": "~3.3.7",
     "event-stream": "~3.3.1",
-    "uglify-js": "~2.4.24",
     "vinyl": "~0.5.0"
   }
 }

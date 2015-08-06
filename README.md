@@ -18,14 +18,16 @@
 
 这样会读取资源文件，把内容嵌入在标签的位置。script标签会删去src和data-replace属性，并在标签内嵌入内容。link标签会在后面产生一个style节点，并嵌入内容。标签本身会被删除。
 
+目前插件会自动压缩css和js文件，未来可以通过配置文件取消这一功能。
+
 另外一种引用格式为：
 
 ```html
 <link rel="stylesheet" type="text/css" href="local/amui.css" data-replace="amui">
-<script src="zepto.js" data-replace="zepto"></script>
+<script src="zepto.js" data-replace="static-zepto"></script>
 ```
 
-在data-replace中写入全局资源包的名称，即可替换为相应的地址。
+在data-replace中写入"static-全局资源包名称"，即可替换为相应的地址。
 
 目前支持以下资源：
 

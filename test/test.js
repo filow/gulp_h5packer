@@ -68,4 +68,12 @@ describe('gulp-h5packer', function (){
     });
   });
 
+  it('#Base64图片转码支持', function(done) {
+    parseHelper('<img src="assets/fake.png" data-replace="base64">', function (file){
+      assert(file.isBuffer());
+      assert.equal(file.contents.toString('utf8'), htmlWrapper(null, '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABlBMVEXu7AAAqu53V3L/AAAAFUlEQVR4AWNghAIGKKC3ABoYaPcAAEUQAIFcwTR+AAAAAElFTkSuQmCC">'));
+      done();
+    });
+  });
+
 });
