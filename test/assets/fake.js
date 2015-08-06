@@ -1,1 +1,3 @@
-console.log('Test');
+(function(window){
+  window.console.log('Test');
+})(window);
