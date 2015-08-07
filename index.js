@@ -5,14 +5,13 @@ var PluginError = gutil.PluginError;
 var Buffer = require('buffer').Buffer;
 var path = require('path');
 var replacer = require('./lib/replacer').RawReplacer
-
+var _ = require('lodash');
 // Consts
 const PLUGIN_NAME = 'gulp-h5replacer';
 
 
 // Plugin level function(dealing with files)
-function gulpH5Replacer() {
-
+function gulpH5Replacer(cfg) {
   // Creating a stream through which each file will pass
   return through.obj(function(file, enc, cb) {
     if (file.isNull()) {
@@ -33,7 +32,7 @@ function gulpH5Replacer() {
         return cb(null, file);
       }
       // 替换资源
-      replacer(file.path, file.contents.toString(), function (result){
+      replacer(file.path, file.contents.toString(), cfg,  function (result){
         file.contents = new Buffer(result);
         cb(null, file);
         // console.log(file.contents.toString());
