@@ -22,8 +22,10 @@ function gulpH5Replacer(cfg) {
       this.emit('error',new PluginError(PLUGIN_NAME, ": Streaming not supported"));
       return cb(null, file);
     }
-    console.log(PLUGIN_NAME + ': ' + file.path);
-    
+    if(cfg.showLog !== false){
+      console.log(PLUGIN_NAME + ': ' + file.path);
+    }
+  
 
     if (file.isBuffer()) {
       var ext = path.extname(file.path).toLowerCase();

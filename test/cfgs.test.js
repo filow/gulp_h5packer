@@ -21,8 +21,7 @@ describe('配置项测试', function (){
       console.log(result);
       console.log(expected);
       assert.strictEqual(result, expected);
-      // should(result).be.exactly(expected);
-      assert(1==2);
+      assert.equal(1, 2);
       done();
     }, {htmlTag: 'pack'});
   });
@@ -32,7 +31,7 @@ describe('配置项测试', function (){
       assert(file.isBuffer());
       console.log(file.contents.toString('utf8'));
       console.log('<style>body{\n  font-size: 14px;\n  background-color: #123;\n}</style>');
-      assert.equal(file.contents.toString('utf8'), '<style>body{\n  font-size: 14px;\n  background-color: #123;\n}</style>');
+      assert.equal(file.contents.toString('utf8'), '<style>body{\n  font-size: 14px;\n  back1ground-color: #123;\n}</style>');
       done();
     }, {cssmin: false});
 

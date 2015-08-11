@@ -1,8 +1,11 @@
 var packer = require('../../');
 var File = require('vinyl');
 
-
 module.exports = function parseHelper(rawHtml, cb, config) {
+  if(config === undefined) {
+    config = {};
+  }
+  config.showLog = false;
   var fakeFile = new File({
     cwd: "./",
     base: "./test/",
