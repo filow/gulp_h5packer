@@ -8,6 +8,8 @@
 
 ## 关键版本节点
 
+0.3.0: 脱离支付宝H5开发环境独立发展
+
 0.2.0: 替换HTML解析引擎为cheerio，提升2倍以上的效率
        增加对配置项的支持
 
@@ -40,18 +42,15 @@
 
 在data-replace中写入"static-全局资源包名称"，即可替换为相应的地址。
 
-目前支持以下资源：
-
+该功能由于目前脱离了支付宝环境，暂时没有默认值，请在初始化参数中传入：
 ```js
 {
-  amui: 'https://a.alipayobjects.com/amui/native/9.0/amui.css',
-  zepto: 'https://a.alipayobjects.com/amui/zepto/1.1.3/zepto.js',
-  antBridge: 'https://a.alipayobjects.com/publichome-static/antBridge/antBridge.min.js',
-  fastclick: 'https://a.alipayobjects.com/static/fastclick/1.0.6/fastclick.min.js',
-  lazyload: 'https://a.alipayobjects.com/static/lazyload/2.0.3/lazyload.min.js'
+  staticUrl: {
+    name: 'http://url.to.path'
+  }
 }
+
 ```
-具体的列表可以看[h5全局离线资源包](http://ux.alipay-inc.com/index.php/H5%E5%85%A8%E5%B1%80%E7%A6%BB%E7%BA%BF%E8%B5%84%E6%BA%90%E5%8C%85)
 
 ### 图片Base64转化标记
 ```html
@@ -63,7 +62,7 @@
 设置完HTML后，在gulpfile.js中引用：
 ```js
 gulp.task('pack', function (){
-  var replacer = require('@alipay/gulp-h5replacer');
+  var replacer = require('gulp-h5replacer');
   gulp.src('./build/*/*.html')
     .pipe(replacer())
     .pipe(gulp.dest('./pack'));
