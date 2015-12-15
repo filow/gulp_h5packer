@@ -18,8 +18,8 @@ describe('配置项测试', function (){
       var result = file.contents.toString('utf8');
       var expected = '<style>body{font-size:14px;background-color:#123}</style>123';
       throw new Error('123');
-      console.log(result);
-      console.log(expected);
+      // console.log(result);
+      // console.log(expected);
       assert.strictEqual(result, expected);
       assert.equal(1, 2);
       done();
@@ -29,8 +29,8 @@ describe('配置项测试', function (){
   it('#cssmin', function (){
     parseHelper('<link rel="stylesheet" href="assets/fake.css" data-replace="true" />', function (file){
       assert(file.isBuffer());
-      console.log(file.contents.toString('utf8'));
-      console.log('<style>body{\n  font-size: 14px;\n  background-color: #123;\n}</style>');
+      // console.log(file.contents.toString('utf8'));
+      // console.log('<style>body{\n  font-size: 14px;\n  background-color: #123;\n}</style>');
       assert.equal(file.contents.toString('utf8'), '<style>body{\n  font-size: 14px;\n  back1ground-color: #123;\n}</style>');
       done();
     }, {cssmin: false});
