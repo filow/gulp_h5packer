@@ -1,4 +1,4 @@
-# gulp-inline
+# gulp-inline-src
 
 移动H5页面打包工具
 
@@ -68,7 +68,7 @@
 设置完HTML后，在gulpfile.js中引用：
 ```js
 gulp.task('pack', function (){
-  var inline = require('gulp-inline');
+  var inline = require('gulp-inline-src');
   gulp.src('./build/*/*.html')
     .pipe(inline())
     .pipe(gulp.dest('./public'));
