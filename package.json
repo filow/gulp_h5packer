@@ -18,10 +18,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blackstone86/gulp_inline.git"
+    "url": "https://github.com/blackstone86/gulp_inline_src.git"
   },
   "bugs": {
-    "url": "https://github.com/blackstone86/gulp_inline/issues"
+    "url": "https://github.com/blackstone86/gulp_inline_src/issues"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
