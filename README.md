@@ -9,13 +9,13 @@
   - 样式
 
     ```html
-    <link rel="stylesheet" type="text/css" href="animate.css" data-inline="true">
+    <link data-inline="true" href="animate.css" rel="stylesheet" type="text/css">
     ```
 
     内联CDN资源
 
     ```html
-    <link rel="stylesheet" type="text/css" href="animate.css" data-inline="true" data-inline="static-animate">
+    <link data-inline="static-animate" href="animate.css" rel="stylesheet" type="text/css">
     ```
 
     参数
@@ -31,13 +31,13 @@
   - 脚本
 
     ```html
-    <script src="zepto.js" data-inline="true"></script>
+    <script data-inline="true" src="zepto.js"></script>
     ```
 
     内联CDN资源
 
     ```html
-    <script src="zepto.js" data-inline="true" data-inline="static-zepto"></script>
+    <script data-inline="static-zepto" src="zepto.js"></script>
     ```
 
     参数
