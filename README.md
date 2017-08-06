@@ -61,7 +61,7 @@
 ### 脚本中内联
 
   ```js
-  __inline("./plugin/tinymce-plugin-autosave.js")
+  __inline('./plugin/tinymce-plugin-autosave.js')
   var uploadTpl = __inline('./tpls/upload.html');
   var EDITOR_CONFIG = __inline('./config/config.json');
   ```
