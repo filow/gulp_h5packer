@@ -1,85 +1,93 @@
 # gulp-inline-src
 
-移动H5页面打包工具
+资源内联插件，对html或js中引用的外部资源通过内联方式嵌入
 
-为了减少移动端H5页面的请求数量，往往会在发布前将页面依赖的JS, CSS文件嵌入html中，如果一些资源有全局资源包的支持，也会将其替换为CDN地址。
+## 快速开始
 
-本插件可以根据link, script, img标签中的标记，选择将文件内容嵌入或者替换为CDN地址。
+### html中内联
 
-## 关键版本节点
+  - 样式
 
-0.4.0: 基于`filow/gulp_h5packer`0.3.0版本进行优化与bug修复
-  - 解决关闭压缩后注入空脚本问题
-  - 解决压缩es2015规范代码异常
-  - 解决`htmlTag`配置变更后`staticUrl`替换失败问题
-  - 增加压缩是否采用严格模式配置
-  - 修改`htmlTag`默认值为`inline`
+    ```html
+    <link rel="stylesheet" type="text/css" href="animate.css" data-inline="true">
+    ```
 
-0.3.0: 脱离支付宝H5开发环境独立发展
+    内联CDN资源
 
-0.2.0: 替换HTML解析引擎为cheerio，提升2倍以上的效率
-       增加对配置项的支持
+    ```html
+    <link rel="stylesheet" type="text/css" href="animate.css" data-inline="true" data-inline="static-animate">
+    ```
 
-0.1.7: 可以支持网络文件的嵌入和BASE64
+    参数
 
-0.1.6: 支持img标签内图片的BASE64, 支持js和CSS的压缩
+    ```js
+    {
+      staticUrl: {
+        animate: 'http://apps.bdimg.com/libs/animate.css/3.1.0/animate.min.css'
+      }
+    }
+    ```
 
+  - 脚本
 
-## 用法
+    ```html
+    <script src="zepto.js" data-inline="true"></script>
+    ```
 
-首先，在待处理的html文件中加入标记。标记共有三种：
+    内联CDN资源
 
-### 内容替换标记
+    ```html
+    <script src="zepto.js" data-inline="true" data-inline="static-zepto"></script>
+    ```
 
-```html
-<link rel="stylesheet" type="text/css" href="something.css" data-inline="true">
-<script src="something.js" data-inline="true"></script>
-```
+    参数
 
-这样会读取资源文件，把内容嵌入在标签的位置。script标签会删去src和data-inline属性，并在标签内嵌入内容。link标签会在后面产生一个style节点，并嵌入内容。标签本身会被删除。
+    ```js
+    {
+      staticUrl: {
+        zepto: 'http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js'
+      }
+    }
+    ```
 
-### 资源URL替换标记
+  - 图片
 
-```html
-<link rel="stylesheet" type="text/css" href="local/animate.css" data-inline="static-animate">
-<script src="local/zepto.js" data-inline="static-zepto"></script>
-```
+  ```html
+  <img src="fake.png" data-inline="base64">
+  ```
 
-在data-inline中写入"static-全局资源包名称"，即可替换为相应的地址。
+  > 注：目前Base64转码不考虑文件大小因素，请不要在大图片上加这个标记！
 
-该功能由于目前脱离了支付宝环境，暂时没有默认值，请在初始化参数中传入：
-```js
-{
-  staticUrl: {
-    animate: 'http://apps.bdimg.com/libs/animate.css/3.1.0/animate.min.css'
-    ,zepto: 'http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js'
-  }
-}
+### 脚本中内联
 
-```
-
-### 图片Base64转化标记
-```html
-<img src="fake.png" data-inline="base64">
-```
-注意： 目前Base64转码不考虑文件大小因素，请不要在大图片上加这个标记！
+  ```js
+  __inline("./plugin/tinymce-plugin-autosave.js")
+  var uploadTpl = __inline('./tpls/upload.html');
+  var EDITOR_CONFIG = __inline('./config/config.json');
+  ```
 
 ## 引用
-设置完HTML后，在gulpfile.js中引用：
-```js
-gulp.task('pack', function (){
-  var inline = require('gulp-inline-src');
-  gulp.src('./build/*/*.html')
-    .pipe(inline())
+
+  ```js
+  let inline = require('gulp-inline-src');
+  gulp.task('inline', function (){
+    var options = {
+      staticUrl: {
+        animate: 'http://apps.bdimg.com/libs/animate.css/3.1.0/animate.min.css'
+        ,zepto: 'http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js'
+      }
+    };
+    gulp.src('./index.html')
+    .pipe(inline(options))
     .pipe(gulp.dest('./public'));
-});
-```
+  })
+  ```
 
 ## 参数
 
 | 属性 | 描述 | 是否必须 | 值类型 | 默认值 |
 |---- |:-------------:|:----:|:----:| ----:| 
-| `htmlTag` | 用于识别的属性 | 否 | {String} | "replace" |
+| `htmlTag` | 用于识别的属性 | 否 | {String} | "inline" |
 | `cssmin` | 是否开启css压缩 | 否 | {Boolean} | true |
 | `jsmin` | 是否开启js压缩 | 否 | {Boolean} | true |
 | `strict` | 是否使用严格模式 | 否 | {Boolean} | true |
@@ -91,3 +99,20 @@ gulp.task('pack', function (){
 > 注：
 > - `clean-css`版本为`~3.3.7`
 > - `uglify-js`版本为`~2.4.24`
+
+## 版本
+
+- 0.4.2: 新增`__inline`语法，支持在脚本中内联外部js或html资源
+
+- 0.4.1: 修改代码仓库名称
+
+- 0.4.0: 基于`filow/gulp_h5packer`0.3.0版本进行优化与bug修复
+  - 解决关闭压缩后注入空脚本问题
+  - 解决压缩es2015规范代码异常
+  - 解决`htmlTag`配置变更后`staticUrl`替换失败问题
+  - 增加压缩是否采用严格模式配置
+  - 修改`htmlTag`默认值为`inline`
+
+
+
+
