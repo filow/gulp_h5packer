@@ -102,6 +102,12 @@
 
 ## 版本
 
+- 0.4.4: 修复bug
+  - 修复`ignoreCompressFolders`属性在`windows`平台失效问题
+  - `jsmin`属性为true且文件大小>500kb，消除`babel-core`的警告提示
+
+- 0.4.3: 修改`README.md`的描述
+
 - 0.4.2: 新增`__inline`语法，支持在脚本中内联外部js或html资源
 
 - 0.4.1: 修改代码仓库名称
