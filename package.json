@@ -1,6 +1,6 @@
 {
   "name": "gulp-inline-src",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "资源内联插件，对html或js中引用的外部资源通过内联方式嵌入",
   "main": "index.js",
   "scripts": {
